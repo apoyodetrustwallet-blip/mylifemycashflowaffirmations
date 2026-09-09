@@ -49,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (data?.id) await AsyncStorage.setItem("auth_user", JSON.stringify(data));
       // Auto daily check-in for admin
       if (data?.isAdmin && data?.id) {
-        fetch(`${process.env.EXPO_PUBLIC_API_URL || "https://global-affirmation-hub-1.vercel.app"}/api/rewards/daily-checkin`, {
+        fetch(`${process.env.EXPO_PUBLIC_API_URL || "https://mylifemycashflowaffirmations.onrender.com"}/api/rewards/daily-checkin`, {
           method: "POST",
           headers: { "Content-Type": "application/json", "X-User-Id": String(data.id) },
         }).catch(() => {});

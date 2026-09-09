@@ -24,7 +24,7 @@ async function getUserId(): Promise<number | null> {
  */
 export function getApiUrl(): string {
   // Production backend URL - baked into APK
-  const productionUrl = "https://global-affirmation-hub-1.vercel.app/";
+  const productionUrl = "https://mylifemycashflowaffirmations.onrender.com/";
   
   // Use production URL by default, or allow environment override for development
   const explicitUrl = process.env.EXPO_PUBLIC_API_URL;
