@@ -33,7 +33,7 @@
       [
         "expo-router",
         {
-"origin": "https://mylifemycashflowaffirmations.onrender.com"
+"origin": "https://global-affirmation-hub-1.vercel.app"
         }
       ],
       [
@@ -56,7 +56,7 @@
     },
     "extra": {
       "router": {
-        "origin": "https://mylifemycashflowaffirmations.onrender.com"
+        "origin": "https://global-affirmation-hub-1.vercel.app"
       },
       "eas": {
         "projectId": "f1a12347-7f94-4549-ba8b-b14a8e097908"

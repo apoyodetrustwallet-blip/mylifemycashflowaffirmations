@@ -10,7 +10,7 @@
         "buildType": "app-bundle"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://mylifemycashflowaffirmations.onrender.com"
+        "EXPO_PUBLIC_API_URL": "https://global-affirmation-hub-1.vercel.app"
       }
     },
     "preview": {
@@ -18,14 +18,14 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://mylifemycashflowaffirmations.onrender.com"
+        "EXPO_PUBLIC_API_URL": "https://global-affirmation-hub-1.vercel.app"
       }
     },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://mylifemycashflowaffirmations.onrender.com"
+        "EXPO_PUBLIC_API_URL": "https://global-affirmation-hub-1.vercel.app"
       }
     }
   }
