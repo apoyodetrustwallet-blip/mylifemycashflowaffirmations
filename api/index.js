@@ -71,22 +71,14 @@ module.exports = async function handler(req, res) {
   const method = req.method || "GET";
 
   try {
-    // ── Images: Serve affirmation images from DB ──
+    // ── Images: Redirect to Supabase Storage ──
     const imgMatch = path.match(/^\/api\/images\/(\d+)$/);
     if (imgMatch && method === "GET") {
-      const sql = getSQL();
       const affId = parseInt(imgMatch[1]);
-      const rows = await sql`SELECT image_data FROM affirmations WHERE id = ${affId}`;
-      if (!rows.length || !rows[0].image_data) {
-        return res.status(404).json({ error: "Image not found" });
-      }
-      const dataUri = rows[0].image_data;
-      const base64 = dataUri.split(",")[1];
-      const mime = dataUri.split(";")[0].replace("data:", "");
-      const buffer = Buffer.from(base64, "base64");
-      res.setHeader("Content-Type", mime);
+      const storageUrl = `https://xaroywysprzxgybdtbae.supabase.co/storage/v1/object/public/affirmations/affirmation-${affId}.jpg`;
       res.setHeader("Cache-Control", "public, max-age=86400");
-      return res.send(buffer);
+      res.setHeader("Location", storageUrl);
+      return res.status(302).end();
     }
 
     // ── Health (tests DB connection) ──
@@ -265,7 +257,7 @@ module.exports = async function handler(req, res) {
           dayNumber: a.day_number,
           title: safeDecode(a.title),
           content: a.content,
-          imageUrl: a.image_data ? `/api/images/${a.id}` : a.image_url,
+          imageUrl: `https://xaroywysprzxgybdtbae.supabase.co/storage/v1/object/public/affirmations/affirmation-${a.id}.jpg`,
           createdAt: a.created_at,
         })),
       });
@@ -285,7 +277,7 @@ module.exports = async function handler(req, res) {
         dayNumber: a.day_number,
         title: safeDecode(a.title),
         content: a.content,
-        imageUrl: a.image_data ? `/api/images/${a.id}` : a.image_url,
+        imageUrl: `https://xaroywysprzxgybdtbae.supabase.co/storage/v1/object/public/affirmations/affirmation-${a.id}.jpg`,
         createdAt: a.created_at,
       })));
     }
@@ -381,7 +373,7 @@ module.exports = async function handler(req, res) {
         dayNumber: a.day_number,
         title: safeDecode(a.title),
         content: a.content,
-        imageUrl: a.image_data ? `/api/images/${a.id}` : a.image_url,
+        imageUrl: `https://xaroywysprzxgybdtbae.supabase.co/storage/v1/object/public/affirmations/affirmation-${a.id}.jpg`,
         createdAt: a.created_at,
         bookletMonth: booklet[0].month,
         bookletYear: booklet[0].year,
@@ -434,7 +426,7 @@ module.exports = async function handler(req, res) {
         dayNumber: a.day_number,
         title: safeDecode(a.title),
         content: a.content,
-        imageUrl: a.image_data ? `/api/images/${a.id}` : a.image_url,
+        imageUrl: `https://xaroywysprzxgybdtbae.supabase.co/storage/v1/object/public/affirmations/affirmation-${a.id}.jpg`,
         createdAt: a.created_at,
         bookletMonth: a.booklet_month,
         bookletYear: a.booklet_year,
